@@ -213,10 +213,10 @@ async def gpt(ctx, *, pedido):
         await ctx.send("❌ ENTRA NA SALA, MLK BURRO!")
         return
 
-    # Palavras-chave específicas no início da frase para identificar pedidos de música
+    # lixo estatico ainda
     palavras_musica = ["toca", "coloca", "musica", "quero ouvir", "play", "ouvir", "me recomenda"]
 
-    # Verifica se a mensagem começa com uma das palavras-chave
+    # Verifica se a mensagem começa com algo de cima
     primeira_palavra = pedido.lower().split()[0]
     if primeira_palavra in palavras_musica:
         await ctx.send(f"🎧 DJ DEIGO DEIGO BUSCANDO: **{pedido}**...")
@@ -260,20 +260,20 @@ async def sp(ctx, *, pedido):
             track_id = pedido.split('/')[-1].split('?')[0]
             track = spotify.track(track_id)
 
-            # Extrai nome da música e artistas
+            # Extrai nome da musica e artistas
             artistas = ", ".join([a['name'] for a in track['artists']])
             titulo_busca = f"{track['name']} {artistas} - Topic"
         else:
             # Usa o próprio texto como busca no YouTube
             titulo_busca = pedido
 
-            # (Opcional) tentar buscar no Spotify também, apenas para validação
+            # tenta buscar no spotify tb apenas para validação
             resultado_spotify = spotify.search(q=pedido, type="track", limit=1)
             tracks = resultado_spotify['tracks']['items']
             if not tracks:
                 await mensagem_status.edit(content="❌ Não encontrei essa música no Spotify.")
                 return
-            track = tracks[0]  # Não é usado para a busca no YouTube, mas pode ser útil depois
+            track = tracks[0]
 
         # Busca no YouTube
         ydl_opts = {"quiet": True, "noplaylist": True, "format": "bestaudio/best"}
@@ -282,7 +282,7 @@ async def sp(ctx, *, pedido):
             titulo_final, url_final = yt_result["title"], yt_result["webpage_url"]
 
         await adicionar_fila(ctx, titulo_final, url=url_final)
-        await mensagem_status.delete()  # Remove a mensagem de status após o sucesso
+        await mensagem_status.delete()  # Remove a mensagem de status
 
     except IndexError:
         await mensagem_status.edit(content="❌ Não encontrei um vídeo no YouTube para essa música.")
