@@ -7,11 +7,7 @@ from openai import OpenAI
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 
-# ===== CONFIGURAÇÕES E TOKENS =====
-DISCORD_TOKEN = "MTQyMDA1NzczNjk4NDY2MjIwOA.GAjar1.ITqezY3qhcbsgeij4491esrrh-BJsXfG9yJGI0"
-SPOTIFY_CLIENT_ID = "90c132a779ce43ee981ad6eef6425dd5"
-SPOTIFY_CLIENT_SECRET = "b1432c41ec8c4232a3ead35a93c58e3a"
-OPENAI_API_KEY = "sk-proj-O21mng5N5KR8uU5gkr44uvV6Tqs1_CRzDwS1Bo2uW0vQjuQbCZTnkswB7IzugRO5Ww_9zjQQ2wT3BlbkFJ2F5fzersjGK8lBpZySses23bPogcfw9sPx2qwhju3WFyclNSXjKvZTXMALhEpln_WVXcC2ngA"
+
 
 # Inicializa clientes
 client = OpenAI(api_key=OPENAI_API_KEY)
